@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en" class="dark h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAT Math Complete Practice Test — Eng. Keroulss Tharwat</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- MathJax for rendering SAT Math formulas -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #f1f5f9;
+            user-select: none;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 9999px;
+        }
+        /* Custom radio choices styling */
+        .choice-card {
+            transition: all 0.2s ease;
+        }
+        .choice-card:hover {
+            border-color: #3b82f6;
+            background-color: #1e293b;
+        }
+        .choice-card.selected {
+            border-color: #3b82f6;
+            background-color: #1e3a8a;
+        }
+        .choice-card.correct {
+            border-color: #22c55e;
+            background-color: #064e3b;
+        }
+        .choice-card.wrong {
+            border-color: #ef4444;
+            background-color: #7f1d1d;
+        }
+    </style>
+</head>
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white">
+
+    <!-- ==================== PAGE 1: START / LANDING PAGE ==================== -->
+    <div id="start-screen" class="min-h-screen flex flex-col justify-between relative overflow-hidden bg-gradient-to-b from-[#0b0f19] via-[#0f172a] to-[#090d16] px-4 sm:px-6 lg:px-8 py-8">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-600/10 via-transparent to-transparent pointer-events-none"></div>
+
+        <div class="max-w-3xl mx-auto my-auto text-center relative z-10 space-y-6 w-full">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs sm:text-sm font-bold uppercase tracking-widest shadow-lg">
+                <i class="fa-solid fa-crown text-amber-400"></i> Master SAT Math Sheet — All Topics
+            </span>
+
+            <div class="space-y-3">
+                <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white drop-shadow-lg">
+                    Eng. <span class="bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent">Keroulss Tharwat</span>
+                </h1>
+                
+                <div class="flex flex-wrap items-center justify-center gap-3 pt-1">
+                    <a href="tel:+201227829886" class="inline-flex items-center gap-2 text-sm sm:text-base font-bold text-cyan-300 hover:text-cyan-200 bg-slate-800/80 border border-cyan-500/30 px-4 py-2 rounded-xl transition-all">
+                        <i class="fa-solid fa-phone-volume text-cyan-400"></i> +20 122 782 9886
+                    </a>
+                    <a href="https://wa.me/201227829886" target="_blank" class="inline-flex items-center gap-2 text-sm sm:text-base font-bold text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 px-4 py-2 rounded-xl transition-all">
+                        <i class="fa-brands fa-whatsapp text-emerald-400"></i> WhatsApp Us
+                    </a>
+                </div>
+            </div>
+            
+            <div class="bg-slate-800/80 border border-blue-500/30 p-4 rounded-2xl text-slate-200 text-xs sm:text-sm font-semibold shadow-inner">
+                🚀 <span class="text-amber-300 font-bold">Complete Practice Sheet:</span> Linear Equations, Systems, Absolute Values, Inequalities, Quadratics & Advanced Functions!
+            </div>
+
+            <!-- Student Name Entry & Timer Options -->
+            <div class="bg-slate-900/90 border border-slate-800 p-6 sm:p-8 rounded-3xl shadow-2xl backdrop-blur-md space-y-5 text-left">
+                <div>
+                    <label for="student-name" class="block text-sm font-bold text-cyan-300 mb-2">
+                        <i class="fa-solid fa-user-pen mr-1"></i> Student Full Name:
+                    </label>
+                    <input type="text" id="student-name" placeholder="Enter your full name..." class="w-full bg-slate-950 border border-slate-700 text-white placeholder-slate-500 px-4 py-3 rounded-xl focus:outline-none focus:border-blue-500 text-left font-bold transition-all shadow-inner">
+                    <p id="name-error" class="hidden text-rose-400 text-xs font-semibold mt-2"><i class="fa-solid fa-circle-exclamation"></i> Please enter your name to start the test.</p>
+                </div>
+
+                <!-- Timer Selection -->
+                <div>
+                    <label class="block text-sm font-bold text-cyan-300 mb-2">
+                        <i class="fa-solid fa-clock mr-1"></i> Select Timer Option:
+                    </label>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <label class="flex items-center gap-2 bg-slate-950 border border-slate-800 hover:border-blue-500/50 p-3 rounded-xl cursor-pointer">
+                            <input type="radio" name="timer-option" value="unlimited" checked class="accent-blue-500">
+                            <span class="text-xs sm:text-sm font-bold text-amber-400"><i class="fa-solid fa-infinity"></i> Open (Untimed)</span>
+                        </label>
+                        <label class="flex items-center gap-2 bg-slate-950 border border-slate-800 hover:border-blue-500/50 p-3 rounded-xl cursor-pointer">
+                            <input type="radio" name="timer-option" value="30" class="accent-blue-500">
+                            <span class="text-xs sm:text-sm font-bold text-slate-200">30 Minutes</span>
+                        </label>
+                        <label class="flex items-center gap-2 bg-slate-950 border border-slate-800 hover:border-blue-500/50 p-3 rounded-xl cursor-pointer">
+                            <input type="radio" name="timer-option" value="60" class="accent-blue-500">
+                            <span class="text-xs sm:text-sm font-bold text-slate-200">60 Minutes</span>
+                        </label>
+                        <label class="flex items-center gap-2 bg-slate-950 border border-slate-800 hover:border-blue-500/50 p-3 rounded-xl cursor-pointer">
+                            <input type="radio" name="timer-option" value="90" class="accent-blue-500">
+                            <span class="text-xs sm:text-sm font-bold text-slate-200">90 Minutes</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between text-xs sm:text-sm text-slate-400 border-t border-slate-800 pt-4">
+                    <span class="flex items-center"><i class="fa-solid fa-layer-group text-blue-400 mr-1"></i> All SAT Topics</span>
+                    <span class="flex items-center"><i class="fa-solid fa-list-check text-blue-400 mr-1"></i> 62 Questions</span>
+                    <span class="flex items-center"><i class="fa-solid fa-calculator text-blue-400 mr-1"></i> Calculator Built-In</span>
+                </div>
+
+                <!-- START EXAM BUTTON -->
+                <button onclick="startQuiz()" class="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black px-8 py-4 rounded-xl text-lg shadow-xl shadow-blue-600/30 transition-all hover:scale-[1.01] active:scale-95 border border-blue-400/30 cursor-pointer">
+                    <i class="fa-solid fa-play text-amber-400"></i> Start Practice Sheet
+                </button>
+            </div>
+        </div>
+
+        <div class="text-center text-xs text-slate-500 font-medium pt-4">
+            © Eng. Keroulss Tharwat SAT Prep
+        </div>
+    </div>
+
+    <!-- ==================== PAGE 2: EXAM WORKSPACE ==================== -->
+    <div id="quiz-screen" class="hidden min-h-screen flex-col justify-between bg-[#0b0f19]">
+
+        <!-- Sub-Header Controls -->
+        <header class="bg-[#111827]/90 border-b border-slate-800 shadow-md backdrop-blur-md sticky top-0 z-40">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+                
+                <div class="flex items-center gap-3">
+                    <span class="bg-blue-600 text-white text-xs font-black px-3 py-1 rounded-md uppercase tracking-wider shadow-sm">
+                        FULL SHEET
+                    </span>
+                    <div>
+                        <h1 class="font-bold text-sm sm:text-base text-slate-100">
+                            SAT Math — Master Practice Sheet
+                        </h1>
+                        <p class="text-xs text-slate-400">Eng. Keroulss Tharwat</p>
+                    </div>
+                </div>
+
+                <!-- Header Actions -->
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleCalculator()" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs px-3 py-2 rounded-lg transition-all shadow-sm cursor-pointer">
+                        <i class="fa-solid fa-calculator text-cyan-400"></i> <span class="hidden sm:inline font-semibold">Calculator</span>
+                    </button>
+
+                    <button onclick="toggleFormulaSheet()" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs px-3 py-2 rounded-lg transition-all shadow-sm cursor-pointer">
+                        <i class="fa-solid fa-book-open text-blue-400"></i> <span class="hidden sm:inline font-semibold">Reference</span>
+                    </button>
+
+                    <!-- Timer Badge -->
+                    <div id="timer-box" class="flex items-center gap-2 bg-slate-800 border border-slate-700 px-3 py-2 rounded-lg font-mono text-xs font-bold text-amber-400 shadow-sm">
+                        <i class="fa-solid fa-clock text-amber-400"></i>
+                        <span id="timer-display">Open Time</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-6 flex flex-col justify-between">
+
+            <!-- Sub-header Bar -->
+            <div class="flex items-center justify-between mb-4">
+                <button id="flag-btn" onclick="toggleFlagCurrentQuestion()" class="flex items-center gap-2 text-xs font-semibold bg-slate-800 border border-slate-700 px-3.5 py-2 rounded-lg text-slate-300 hover:text-amber-400 transition-colors shadow-sm cursor-pointer">
+                    <i class="fa-regular fa-bookmark"></i> Mark for Review
+                </button>
+
+                <button onclick="toggleModal('questionGridModal')" class="text-xs font-bold text-blue-400 hover:text-blue-300 flex items-center gap-1.5 transition-colors cursor-pointer">
+                    <i class="fa-solid fa-border-all"></i> Question Map (<span id="answered-count-badge">0</span>/62)
+                </button>
+            </div>
+
+            <!-- Question Card -->
+            <div id="question-card" class="bg-[#111827] border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl flex flex-col gap-5 relative">
+                
+                <div class="text-xs font-black text-blue-400 uppercase tracking-widest border-b border-slate-800 pb-3 flex justify-between items-center">
+                    <span>QUESTION <span id="current-q-num">1</span> OF 62</span>
+                    <span id="question-category-tag" class="text-[10px] bg-slate-800 border border-slate-700 px-2 py-0.5 rounded text-cyan-300 font-semibold">System of Equations</span>
+                </div>
+
+                <!-- Question Text -->
+                <div id="question-prompt" class="text-slate-100 text-base sm:text-lg leading-relaxed font-normal space-y-3">
+                </div>
+
+                <!-- Optional SVG Visuals -->
+                <div id="visual-container" class="hidden my-2 text-center"></div>
+
+                <!-- Answer Choices -->
+                <div id="options-container" class="grid grid-cols-1 gap-3 pt-2">
+                </div>
+
+                <!-- Step-by-step Explanation Box -->
+                <div id="explanation-box" class="hidden mt-2 bg-slate-950/90 border border-blue-500/40 rounded-xl p-4 text-sm space-y-2 shadow-inner">
+                    <div class="text-blue-400 font-extrabold uppercase text-xs tracking-wider flex items-center gap-2 border-b border-slate-800 pb-2">
+                        <i class="fa-solid fa-lightbulb text-amber-400"></i> Step-by-Step Explanation:
+                    </div>
+                    <div id="explanation-content" class="text-slate-200 text-sm leading-relaxed space-y-1"></div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="pt-6 flex items-center justify-between">
+                <button id="prev-btn" onclick="prevQuestion()" class="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-sm font-semibold transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-sm cursor-pointer">
+                    <i class="fa-solid fa-chevron-left mr-1"></i> Previous
+                </button>
+
+                <div class="text-xs text-slate-400 font-semibold text-center hidden sm:block">
+                    Eng. Keroulss Tharwat SAT Prep
+                </div>
+
+                <button id="next-btn" onclick="nextQuestion()" class="px-7 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold transition-all flex items-center gap-2 cursor-pointer shadow-lg shadow-blue-600/30">
+                    Next <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </main>
+
+        <!-- Teacher Footer Banner -->
+        <footer class="bg-[#0f172a] border-t border-slate-800/80 px-4 sm:px-8 py-3.5 flex items-center justify-between shadow-lg mt-auto">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-cyan-400 shadow-inner">
+                    <i class="fa-solid fa-graduation-cap text-lg"></i>
+                </div>
+                <div>
+                    <h2 class="font-bold text-sm sm:text-base text-slate-100 leading-tight">
+                        Eng. Keroulss Tharwat
+                    </h2>
+                    <p class="text-xs text-slate-400 font-medium">
+                        SAT & EST Math Specialist
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2.5">
+                <a href="tel:+201227829886" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-slate-700/80 bg-slate-800/60 hover:bg-slate-700/60 text-slate-200 text-xs font-semibold transition-all">
+                    <i class="fa-solid fa-phone text-emerald-400 text-xs"></i>
+                    <span>+201227829886</span>
+                </a>
+                <a href="https://wa.me/201227829886" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-emerald-500/40 bg-emerald-950/40 hover:bg-emerald-900/50 text-emerald-300 text-xs font-bold transition-all shadow-sm">
+                    <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i>
+                    <span>WhatsApp</span>
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ==================== PAGE 3: RESULTS SCREEN ==================== -->
+    <div id="results-screen" class="hidden min-h-screen flex-col justify-center items-center px-4 py-10 bg-[#0b0f19]">
+        <div class="max-w-2xl w-full bg-[#111827] border border-blue-500/40 p-8 rounded-3xl shadow-2xl text-center space-y-6">
+            
+            <div class="w-20 h-20 bg-blue-500/20 border border-blue-500/40 text-amber-400 rounded-full flex items-center justify-center mx-auto text-3xl font-black shadow-lg">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            
+            <div>
+                <h2 class="text-3xl font-black text-white tracking-tight">Eng. Keroulss Tharwat</h2>
+                <p class="text-cyan-400 text-xs font-bold uppercase tracking-wider mt-1">SAT & EST Math Elite Coaching</p>
+            </div>
+
+            <div class="space-y-1">
+                <p class="text-slate-400 text-xs font-medium">Student Name:</p>
+                <h3 id="res-student-name" class="text-xl font-black text-blue-400"></h3>
+            </div>
+
+            <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-2 shadow-inner">
+                <div class="text-4xl sm:text-5xl font-black text-amber-400" id="final-score-display">0 / 62</div>
+                <div class="text-sm font-bold text-slate-300" id="final-percentage">0% Correct Score</div>
+                <div id="time-taken-display" class="text-xs text-slate-400 font-semibold pt-1">Time Elapsed: 0 mins</div>
+            </div>
+
+            <!-- Call To Action -->
+            <div class="bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 border border-cyan-500/40 p-5 rounded-2xl text-slate-200 text-xs sm:text-sm space-y-3 shadow-lg text-left">
+                <div class="flex items-center gap-2 text-amber-400 font-extrabold text-sm uppercase tracking-wide">
+                    <i class="fa-solid fa-rocket text-base"></i> Aiming for an 800 SAT Math Score?
+                </div>
+                <p class="text-slate-300 leading-relaxed font-medium">
+                    Want to boost your confidence and guarantee your dream score? <strong class="text-white">Join Eng. Keroulss Tharwat's elite group coaching courses!</strong>
+                </p>
+            </div>
+
+            <!-- Contact Buttons -->
+            <div class="space-y-3 pt-2">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <button onclick="sendViaWhatsApp()" class="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl text-sm transition-all shadow-lg shadow-emerald-600/20 cursor-pointer">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Send Score via WhatsApp
+                    </button>
+
+                    <button onclick="sendViaEmail()" class="flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-4 rounded-xl text-sm transition-all shadow-lg shadow-indigo-600/20 cursor-pointer">
+                        <i class="fa-solid fa-envelope text-lg"></i> Send Score via Email
+                    </button>
+                </div>
+
+                <div class="pt-2">
+                    <a href="https://wa.me/201227829886?text=Hello%20Eng.%20Keroulss,%20I%20would%20like%20to%20inquire%20about%20your%20SAT/EST%20Math%20Group%20Classes." target="_blank" class="w-full flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 border border-cyan-500/40 text-cyan-300 font-bold py-3 px-4 rounded-xl text-sm transition-all shadow-md cursor-pointer">
+                        <i class="fa-solid fa-comments text-cyan-400 text-lg"></i> Inquire About SAT Courses
+                    </a>
+                </div>
+            </div>
+
+            <button onclick="location.reload()" class="text-xs text-slate-400 hover:text-blue-400 transition-colors underline block mx-auto cursor-pointer pt-2">
+                Retake Practice Test
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== MODALS ==================== -->
+    <!-- Question Map Modal -->
+    <div id="questionGridModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden justify-center items-center z-50 p-4">
+        <div class="bg-[#111827] border border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-5">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <h3 class="font-bold text-base text-slate-100 flex items-center gap-2">
+                    <i class="fa-solid fa-border-all text-blue-400"></i> Question Map (62 Questions)
+                </h3>
+                <button onclick="toggleModal('questionGridModal')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div id="grid-container" class="grid grid-cols-6 sm:grid-cols-8 gap-2 max-h-72 overflow-y-auto custom-scrollbar p-1"></div>
+            <button onclick="toggleModal('questionGridModal')" class="w-full bg-slate-800 hover:bg-slate-700 py-2.5 rounded-xl text-xs font-bold text-slate-200 cursor-pointer">
+                Close Navigator
+            </button>
+        </div>
+    </div>
+
+    <!-- Scientific Calculator Modal -->
+    <div id="calculatorModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden justify-center items-center z-50 p-4">
+        <div class="bg-[#0f172a] border border-cyan-500/40 rounded-3xl max-w-md w-full p-5 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2">
+                    <span class="bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-extrabold text-[10px] px-2 py-0.5 rounded uppercase tracking-wider">Scientific</span>
+                    <h3 class="font-extrabold text-sm text-slate-100 flex items-center gap-1.5">
+                        <i class="fa-solid fa-calculator text-cyan-400"></i> SAT Calculator
+                    </h3>
+                </div>
+                <button onclick="toggleCalculator()" class="text-slate-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            
+            <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4 space-y-1 shadow-inner text-right">
+                <div id="calc-history" class="text-xs font-mono text-slate-500 h-4 overflow-hidden"></div>
+                <input type="text" id="calc-screen" readonly value="0" class="w-full bg-transparent text-right font-mono text-2xl text-cyan-300 tracking-wider focus:outline-none">
+            </div>
+            
+            <div class="space-y-2">
+                <div class="grid grid-cols-5 gap-1.5 text-xs font-semibold">
+                    <button onclick="calcFunc('sin')" class="bg-slate-800 hover:bg-slate-700 text-cyan-300 py-2 rounded-lg">sin</button>
+                    <button onclick="calcFunc('cos')" class="bg-slate-800 hover:bg-slate-700 text-cyan-300 py-2 rounded-lg">cos</button>
+                    <button onclick="calcFunc('tan')" class="bg-slate-800 hover:bg-slate-700 text-cyan-300 py-2 rounded-lg">tan</button>
+                    <button onclick="calcInput('^')" class="bg-slate-800 hover:bg-slate-700 text-cyan-300 py-2 rounded-lg">xⁿ</button>
+                    <button onclick="calcFunc('sqrt')" class="bg-slate-800 hover:bg-slate-700 text-cyan-300 py-2 rounded-lg">√x</button>
+                </div>
+
+                <div class="grid grid-cols-4 gap-2 text-sm font-bold">
+                    <button onclick="calcClear()" class="bg-rose-600/30 text-rose-300 p-3 rounded-xl hover:bg-rose-600/40">AC</button>
+                    <button onclick="calcBackspace()" class="bg-amber-600/30 text-amber-300 p-3 rounded-xl hover:bg-amber-600/40">DEL</button>
+                    <button onclick="calcInput('(')" class="bg-slate-800 text-slate-200 p-3 rounded-xl">(</button>
+                    <button onclick="calcInput(')')" class="bg-slate-800 text-slate-200 p-3 rounded-xl">)</button>
+
+                    <button onclick="calcInput('7')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700">7</button>
+                    <button onclick="calcInput('8')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700">8</button>
+                    <button onclick="calcInput('9')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700">9</button>
+                    <button onclick="calcInput('/')" class="bg-blue-600/30 text-blue-300 p-3 rounded-xl hover:bg-blue-600/40">÷</button>
+
+                    <button onclick="calcInput('4')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700">4</button>
+                    <button onclick="calcInput('5')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700">5</button>
+                    <button onclick="calcInput('6')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700">6</button>
+                    <button onclick="calcInput('*')" class="bg-blue-600/30 text-blue-300 p-3 rounded-xl hover:bg-blue-600/40">×</button>
+
+                    <button onclick="calcInput('1')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700">1</button>
+                    <button onclick="calcInput('2')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700">2</button>
+                    <button onclick="calcInput('3')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700">3</button>
+                    <button onclick="calcInput('-')" class="bg-blue-600/30 text-blue-300 p-3 rounded-xl hover:bg-blue-600/40">-</button>
+
+                    <button onclick="calcInput('0')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700">0</button>
+                    <button onclick="calcInput('.')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700">.</button>
+                    <button onclick="calcEval()" class="col-span-2 bg-cyan-600 hover:bg-cyan-500 text-white p-3 rounded-xl shadow-lg shadow-cyan-600/30">=</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formula Reference Modal -->
+    <div id="formulaModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden justify-center items-center z-50 p-4">
+        <div class="bg-[#111827] border border-slate-800 rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[85vh] overflow-y-auto custom-scrollbar">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <h3 class="font-bold text-base text-slate-100 flex items-center gap-2">
+                    <i class="fa-solid fa-book-open text-blue-400"></i> SAT Reference Sheet
+                </h3>
+                <button onclick="toggleFormulaSheet()" class="text-slate-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+                    <span class="text-blue-400 font-bold">Slope-Intercept Form:</span>
+                    <p>\(y = mx + b\)</p>
+                </div>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+                    <span class="text-blue-400 font-bold">Quadratic Formula:</span>
+                    <p>\(x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\)</p>
+                </div>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+                    <span class="text-blue-400 font-bold">Vertex Form:</span>
+                    <p>\(y = a(x - h)^2 + k\)</p>
+                </div>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+                    <span class="text-blue-400 font-bold">Exponential Form:</span>
+                    <p>\(f(x) = a \cdot b^x\)</p>
+                </div>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+                    <span class="text-blue-400 font-bold">Pythagorean Theorem:</span>
+                    <p>\(a^2 + b^2 = c^2\)</p>
+                </div>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+                    <span class="text-blue-400 font-bold">Area of Circle:</span>
+                    <p>\(A = \pi r^2\)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC & COMPLETE QUESTION BANK WITH UPDATED NUMBERS -->
+    <script>
+        // Combined question bank containing all questions from all previous sheets with updated numbers & step-by-step solutions
+        const questions = [
+            // --- SECTION 1: SYSTEMS OF LINEAR EQUATIONS (10 Qs - Updated Numbers) ---
+            {
+                cat: "Systems of Equations",
+                prompt: "The system of equations below has a solution of \\((x, y)\\). What is the value of \\(x\\)?<br><br>\\(3x + y = 17\\)<br>\\(x - y = 3\\)",
+                options: ["3", "4", "5", "6"],
+                correct: 2,
+                explanation: "Add the two equations: \\((3x + y) + (x - y) = 17 + 3 \\implies 4x = 20 \\implies x = 5\\)."
+            },
+            {
+                cat: "Systems of Equations",
+                prompt: "What is the solution \\((x, y)\\) to the system?<br><br>\\(y = 3x + 2\\)<br>\\(y = -2x + 12\\)",
+                options: ["(1, 5)", "(2, 8)", "(3, 11)", "(4, 14)"],
+                correct: 1,
+                explanation: "Set expressions equal: \\(3x + 2 = -2x + 12 \\implies 5x = 10 \\implies x = 2\\). Then \\(y = 3(2) + 2 = 8\\). The point is \\((2, 8)\\)."
+            },
+            {
+                cat: "Systems of Equations",
+                prompt: "For what value of \\(k\\) does the system have infinitely many solutions?<br><br>\\(3x + 6y = 18\\)<br>\\(x + 2y = k\\)",
+                options: ["3", "6", "9", "12"],
+                correct: 1,
+                explanation: "Divide the first equation by 3: \\(x + 2y = 6\\). For infinitely many solutions, the second equation must be identical, so \\(k = 6\\)."
+            },
+            {
+                cat: "Systems of Equations",
+                prompt: "The system \\(4x - 3y = 9\\) and \\(8x - 6y = 25\\) has:",
+                options: ["Exactly one solution", "No solution", "Infinitely many solutions", "Exactly two solutions"],
+                correct: 1,
+                explanation: "Multiply the first equation by 2: \\(8x - 6y = 18\\). Compare with \\(8x - 6y = 25\\). Since slopes are equal but intercepts differ, there is <strong>No solution</strong>."
+            },
+            {
+                cat: "Systems of Equations",
+                prompt: "A theater sells adult tickets for $12 and student tickets for $7. A total of 50 tickets are sold for $450. How many adult tickets were sold?",
+                options: ["18", "20", "22", "25"],
+                correct: 1,
+                explanation: "Let \\(a\\) be adult tickets and \\(s\\) be student tickets. \\(a + s = 50\\) and \\(12a + 7s = 450\\). Substitute \\(s = 50 - a\\): \\(12a + 7(50 - a) = 450 \\implies 5a + 350 = 450 \\implies 5a = 100 \\implies a = 20\\)."
+            },
+            {
+                cat: "Systems of Equations",
+                prompt: "The graphs of \\(y = 4x - 5\\) and \\(y = mx + 3\\) intersect at exactly one point. Which statement must be true?",
+                options: ["m = 4", "m ≠ 4", "m = -4", "m = 0"],
+                correct: 1,
+                explanation: "Two non-vertical lines intersect at exactly one point if and only if their slopes are not equal. Thus, \\(m \\neq 4\\)."
+            },
+            {
+                cat: "Systems of Equations",
+                prompt: "If \\(5x + 2y = 24\\) and \\(3x - y = 10\\), what is the value of \\(y\\)?",
+                options: ["1", "2", "3", "4"],
+                correct: 1,
+                explanation: "From the second equation, \\(y = 3x - 10\\). Substitute into the first: \\(5x + 2(3x - 10) = 24 \\implies 11x - 20 = 24 \\implies 11x = 44 \\implies x = 4\\). Then \\(y = 3(4) - 10 = 2\\)."
+            },
+            {
+                cat: "Systems of Equations",
+                prompt: "A system has equations \\(y = 4x - 3\\) and \\(8x - 2y = 6\\). How many solutions does the system have?",
+                options: ["0", "1", "2", "Infinitely many"],
+                correct: 3,
+                explanation: "Rewrite \\(8x - 2y = 6 \\implies 2y = 8x - 6 \\implies y = 4x - 3\\). Both equations are identical, so there are <strong>Infinitely many solutions</strong>."
+            },
+            {
+                cat: "Systems of Equations",
+                prompt: "The system \\(x + 3y = 11\\) and \\(2x - y = 8\\) has solution \\((x, y)\\). What is \\(x + y\\)?",
+                options: ["5", "6", "7", "8"],
+                correct: 2,
+                explanation: "Multiply second equation by 3: \\(6x - 3y = 24\\). Add to first: \\(7x = 35 \\implies x = 5\\). Then \\(5 + 3y = 11 \\implies 3y = 6 \\implies y = 2\\). Thus, \\(x + y = 5 + 2 = 7\\)."
+            },
+            {
+                cat: "Systems of Equations",
+                prompt: "For the system \\(3x + ay = 9\\) and \\(6x + 8y = 18\\), which value of \\(a\\) makes the system have infinitely many solutions?",
+                options: ["2", "4", "6", "8"],
+                correct: 1,
+                explanation: "Divide second equation by 2: \\(3x + 4y = 9\\). Comparing with \\(3x + ay = 9\\) gives \\(a = 4\\)."
+            },
+
+            // --- SECTION 2: LINEAR EQUATIONS & FUNCTIONS (19 Qs - Updated Numbers) ---
+            {
+                cat: "Linear Functions",
+                prompt: "The function \\(f\\) is defined by \\(f(x) = 2x - 8\\). What is the y-intercept of the graph of \\(y = f(x)\\) in the xy-plane?",
+                options: ["(0, -8)", "(0, 8)", "(-8, 0)", "(4, 0)"],
+                correct: 0,
+                explanation: "The y-intercept occurs when \\(x = 0\\). \\(f(0) = 2(0) - 8 = -8\\), giving point \\((0, -8)\\)."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "The linear function \\(g\\) models the annual percentage increase in a city's population \\(x\\) years after 2010. If \\(g(6) = 2.45\\), what is the best interpretation?",
+                options: [
+                    "6 years after 2010, the annual percentage increase was 2.45%.",
+                    "2.45 years after 2010, the annual increase was 6%.",
+                    "6 years after 2010, the population was 2.45 times its 2010 value.",
+                    "2.45 years after 2010, the population was 6 times its 2010 value."
+                ],
+                correct: 0,
+                explanation: "\\(g(6)\\) evaluates the percentage increase at \\(x = 6\\) (the year 2016), which equals 2.45%."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "Line \\(p\\) is defined by \\(4y + 12x = 20\\). Line \\(r\\) is perpendicular to line \\(p\\) in the xy-plane. What is the slope of line \\(r\\)?",
+                options: ["-3", "3", "1/3", "-1/3"],
+                correct: 2,
+                explanation: "Rewrite \\(4y = -12x + 20 \\implies y = -3x + 5\\). Slope of line \\(p\\) is \\(-3\\). Perpendicular slope is \\(1/3\\)."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "The table shows values of \\(x\\) and corresponding values of \\(y\\) for a linear relationship. Which equation represents this relationship?<br><br><table class='w-full text-center border border-slate-700 my-2'><tr><td class='border p-1 bg-slate-900'>x</td><td class='border p-1'>0</td><td class='border p-1'>1</td><td class='border p-1'>2</td></tr><tr><td class='border p-1 bg-slate-900'>y</td><td class='border p-1'>9</td><td class='border p-1'>15</td><td class='border p-1'>21</td></tr></table>",
+                options: ["y = 6x + 9", "y = 9x + 6", "y = 6x - 9", "y = 15x + 9"],
+                correct: 0,
+                explanation: "Slope \\(m = 15 - 9 = 6\\). When \\(x = 0, y = 9\\). Equation is \\(y = 6x + 9\\)."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "A delivery fee includes a fixed base fee plus a rate per mile. The cost equation is modeled as \\(y = 2.5x + 10\\). What does 10 represent?",
+                options: ["Rate per mile", "Fixed base fee", "Total cost", "Total miles"],
+                correct: 1,
+                explanation: "In \\(y = mx + b\\), \\(b = 10\\) represents the y-intercept, which is the fixed base fee."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "A liquid's temperature is modeled by \\(T(m) = 280 - 0.45m\\), where \\(m\\) is grams of solute added. What is the best interpretation of \\(T(30) = 266.5\\)?",
+                options: [
+                    "Adding 30 grams produces an estimated temperature of 266.5 kelvins.",
+                    "Adding 266.5 grams produces an estimated temperature of 30 kelvins.",
+                    "Temperature decreases by 30 kelvins for every 266.5 grams added.",
+                    "Temperature decreases by 266.5 kelvins for every 30 grams added."
+                ],
+                correct: 0,
+                explanation: "\\(T(30)\\) means \\(m = 30\\) grams, resulting in output temperature \\(266.5\\) kelvins."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "Each time \\(x\\) increases by 5, \\(y\\) decreases by 2. If \\(y = 12\\) when \\(x = 0\\), which equation expresses the relationship?",
+                options: ["2x + 5y = 60", "2x - 5y = -60", "5x + 2y = 24", "5x - 2y = -24"],
+                correct: 0,
+                explanation: "Slope \\(m = -2/5\\) and intercept \\(b = 12\\). So \\(y = -\frac{2}{5}x + 12 \\implies 5y = -2x + 60 \\implies 2x + 5y = 60\\)."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "A swimmer swims 6 laps on day 1 and increases by 4 laps each subsequent day. Which equation models total laps \\(L\\) on day \\(n\\)?",
+                options: ["L = 4n + 2", "L = 4n + 6", "L = 6n + 4", "L = 4n - 2"],
+                correct: 0,
+                explanation: "Slope is 4. At \\(n = 1\\), \\(L = 6\\). \\(6 = 4(1) + b \\implies b = 2\\). Thus, \\(L = 4n + 2\\)."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "In a survey, 5 students in Group A answered \\(a\\) questions each, and Group B answered 12 questions total. The total questions answered was 42. In \\(5a + 12 = 42\\), what does \\(5a\\) represent?",
+                options: [
+                    "Number of students in Group A",
+                    "Total questions answered by Group A",
+                    "Total questions answered by Group B",
+                    "Questions per student in Group B"
+                ],
+                correct: 1,
+                explanation: "\\(5a\\) multiplies 5 students by \\(a\\) questions each, representing the total questions answered by Group A."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "The equation \\(6x + 30y = 4,200\\) models trees in a 6-hectare park and a 30-hectare forest. What does \\(x\\) represent?",
+                options: [
+                    "Total trees in the park",
+                    "Trees per hectare in the park",
+                    "Total trees in the forest",
+                    "Trees per hectare in the forest"
+                ],
+                correct: 1,
+                explanation: "6 hectares multiplied by \\(x\\) trees/hectare gives total park trees. Thus, \\(x\\) is trees per hectare in the park."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "A painter's charge \\(y\\) for \\(x\\) hours of work is linear with a fixed setup fee. What does the slope of the graph represent?",
+                options: ["Hourly rate", "Fixed setup fee", "Total charge", "Maximum hours"],
+                correct: 0,
+                explanation: "The slope represents rate of change, which is the painter's hourly rate."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "A line has positive slope and positive y-intercept of 450. Which equation could model this line?",
+                options: ["y = -50x + 450", "y = 50x + 450", "y = -50x - 450", "y = 50x - 450"],
+                correct: 1,
+                explanation: "Positive slope requires a positive coefficient of \\(x\\) (+50), and positive y-intercept is +450."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "A line in the xy-plane passes through \\((2, 9)\\) and \\((6, 21)\\). Which equation is an equation of this line?",
+                options: ["y = 3x + 3", "y = 3x - 3", "y = 2x + 5", "y = 4x + 1"],
+                correct: 0,
+                explanation: "Slope \\(m = (21 - 9)/(6 - 2) = 12/4 = 3\\). Using \\((2,9)\\): \\(9 = 3(2) + b \\implies b = 3\\). Thus, \\(y = 3x + 3\\)."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "The equation \\(H = 450 + 25t\\) gives height \\(H\\) of a tree in cm \\(t\\) years after planting. How many cm does it grow each year?",
+                options: ["25", "450", "475", "11.25"],
+                correct: 0,
+                explanation: "The rate of change is the coefficient of \\(t\\), which is 25 cm per year."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "A car's tank contains 15 gallons of fuel and consumes a constant 0.05 gallons per mile. What type of function models remaining fuel?",
+                options: ["Decreasing linear", "Increasing linear", "Decreasing exponential", "Increasing exponential"],
+                correct: 0,
+                explanation: "A constant rate of decrease is modeled by a <strong>Decreasing linear</strong> function."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "Line \\(k\\) is perpendicular to \\(y = -4x + 7\\) and passes through \\((-8, 3)\\). What is the y-intercept \\(b\\) of line \\(k\\)?",
+                options: ["5", "3", "-1", "1"],
+                correct: 0,
+                explanation: "Perpendicular slope \\(m = 1/4\\). Plug in \\((-8,3)\\): \\(3 = (1/4)(-8) + b \\implies 3 = -2 + b \\implies b = 5\\)."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "What is the x-intercept of \\(f(x) = -5x - 20\\)?",
+                options: ["(-4, 0)", "(4, 0)", "(0, -20)", "(-20, 0)"],
+                correct: 0,
+                explanation: "Set \\(y = 0\\): \\(0 = -5x - 20 \\implies 5x = -20 \\implies x = -4\\). Point is \\((-4, 0)\\)."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "Line \\(l\\) is parallel to \\(y = -(1/5)x + 9\\). What is the slope of line \\(l\\)?",
+                options: ["-5", "-1/5", "1/5", "5"],
+                correct: 1,
+                explanation: "Parallel lines have identical slopes. Thus slope is \\(-1/5\\)."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "What is the x-coordinate of the x-intercept of \\((1/3)x + (1/6)y = 1\\)?",
+                options: ["2", "3", "4", "6"],
+                correct: 1,
+                explanation: "Set \\(y = 0\\): \\((1/3)x = 1 \\implies x = 3\\)."
+            },
+
+            // --- SECTION 3: ABSOLUTE VALUE & INEQUALITIES (15 Qs - Updated Numbers) ---
+            {
+                cat: "Absolute Value",
+                prompt: "If \\(5|x - 4| = 35\\), what is the sum of all possible solutions for \\(x\\)?",
+                options: ["4", "8", "11", "14"],
+                correct: 1,
+                explanation: "Divide by 5: \\(|x - 4| = 7\\). Thus \\(x - 4 = 7 \\implies x = 11\\) or \\(x - 4 = -7 \\implies x = -3\\). Sum \\(= 11 + (-3) = 8\\)."
+            },
+            {
+                cat: "Absolute Value",
+                prompt: "Given \\(|x + 6| = 10\\), which of the following could be the value of \\(x\\)?",
+                options: ["-16", "-4", "4", "16"],
+                correct: 2,
+                explanation: "\\(x + 6 = 10 \\implies x = 4\\) or \\(x + 6 = -10 \\implies x = -16\\). Among choices, 4 is listed."
+            },
+            {
+                cat: "Inequalities",
+                prompt: "Which inequality represents the region below the solid line \\(y = 3x + 2\\)?",
+                options: ["y ≤ 3x + 2", "y ≥ 3x + 2", "y < 3x + 2", "y > 3x + 2"],
+                correct: 0,
+                explanation: "Region below a solid line uses the \\(\\le\\) symbol: \\(y \\le 3x + 2\\)."
+            },
+            {
+                cat: "Absolute Value",
+                prompt: "Which of the following gives all solutions to \\(|x - 7| = 12\\)?",
+                options: ["-5 and 19", "-19 and 5", "-12 and 12", "5 and 19"],
+                correct: 0,
+                explanation: "\\(x - 7 = 12 \\implies x = 19\\) or \\(x - 7 = -12 \\implies x = -5\\)."
+            },
+            {
+                cat: "Inequalities",
+                prompt: "Plan A costs $800 + 10% of sales. Plan B costs $400 + 20% of sales. For what sales amount \\(s\\) does Plan A pay more than Plan B?",
+                options: ["s < 4,000", "s > 4,000", "s < 2,000", "s > 2,000"],
+                correct: 0,
+                explanation: "\\(800 + 0.10s > 400 + 0.20s \\implies 400 > 0.10s \\implies s < 4,000\\)."
+            },
+            {
+                cat: "Inequalities",
+                prompt: "A worker produces between 4 and 7 items per hour. Over 8 hours, the total items \\(I\\) is in which range?",
+                options: ["4 ≤ I ≤ 7", "28 ≤ I ≤ 56", "32 ≤ I ≤ 56", "16 ≤ I ≤ 49"],
+                correct: 2,
+                explanation: "Min = \\(4 \\times 8 = 32\\). Max = \\(7 \\times 8 = 56\\). Range is \\(32 \\le I \\le 56\\)."
+            },
+            {
+                cat: "Absolute Value",
+                prompt: "Which value of \\(x\\) is a solution to \\(|x - 9| = 6\\)?",
+                options: ["3", "-3", "12", "9"],
+                correct: 0,
+                explanation: "\\(x - 9 = 6 \\implies x = 15\\) or \\(x - 9 = -6 \\implies x = 3\\)."
+            },
+            {
+                cat: "Inequalities",
+                prompt: "Which ordered pair satisfies both \\(y > 2x\\) and \\(y < -x + 6\\)?",
+                options: ["(1, 3)", "(3, 1)", "(2, 5)", "(0, 7)"],
+                correct: 0,
+                explanation: "Test \\((1, 3)\\): \\(3 > 2(1)\\) is true, and \\(3 < -1 + 6 = 5\\) is true."
+            },
+            {
+                cat: "Inequalities",
+                prompt: "A worker earns $20/hr coaching and $15/hr reading essays, wanting to earn at least $200 total. Which inequality represents this?",
+                options: ["20x + 15y ≤ 200", "20x + 15y ≥ 200", "20x + 15y > 200", "20x + 15y = 200"],
+                correct: 1,
+                explanation: "At least $200 means greater than or equal to 200: \\(20x + 15y \\ge 200\\)."
+            },
+            {
+                cat: "Absolute Value",
+                prompt: "What is the solution to \\(|x - 6| = |x + 10|\\)?",
+                options: ["-2", "2", "-8", "8"],
+                correct: 0,
+                explanation: "Midpoint between 6 and -10 is \\((6 + (-10))/2 = -4/2 = -2\\)."
+            },
+            {
+                cat: "Absolute Value",
+                prompt: "How many solutions does \\(|2x + 14| = 0\\) have?",
+                options: ["0", "1", "2", "Infinitely many"],
+                correct: 1,
+                explanation: "Absolute value equals 0 if and only if inside equals 0: \\(2x + 14 = 0 \\implies x = -7\\) (Exactly 1 solution)."
+            },
+            {
+                cat: "Inequalities",
+                prompt: "A facility has 500 units and wants at least 1,100 units after 30 days by receiving \\(x\\) units/day. What is the minimum \\(x\\)?",
+                options: ["18", "20", "22", "25"],
+                correct: 1,
+                explanation: "\\(500 + 30x \\ge 1,100 \\implies 30x \\ge 600 \\implies x \\ge 20\\)."
+            },
+            {
+                cat: "Inequalities",
+                prompt: "A pool has 500 gallons. A outlet drains \\(x\\) gallons and a leak drains \\(y\\) gallons. At least 150 gallons must remain. Which inequality fits?",
+                options: ["500 - x - y ≥ 150", "500 - x - y ≤ 150", "x + y ≥ 350", "x + y ≤ 150"],
+                correct: 0,
+                explanation: "Remaining amount is \\(500 - x - y\\), which must be \\(\\ge 150\\)."
+            },
+            {
+                cat: "Inequalities",
+                prompt: "An elevator can carry at most 1,000 lbs. An operator weighs 200 lbs, and each box weighs 50 lbs. Which inequality limits boxes \\(b\\)?",
+                options: ["50b + 200 ≤ 1,000", "50b + 200 ≥ 1,000", "50b - 200 ≤ 1,000", "50b ≤ 1,000"],
+                correct: 0,
+                explanation: "Total weight \\(50b + 200\\) must be at most 1,000 lbs (\\(\\le 1,000\\))."
+            },
+            {
+                cat: "Inequalities",
+                prompt: "Which point satisfies \\(4x - 3y > 12\\)?",
+                options: ["(0, -5)", "(2, 0)", "(1, -1)", "(-2, -2)"],
+                correct: 0,
+                explanation: "Test \\((0, -5)\\): \\(4(0) - 3(-5) = 15 > 12\\) (True)."
+            },
+
+            // --- SECTION 4: QUADRATICS & FUNCTIONS (18 Qs - Updated Numbers) ---
+            {
+                cat: "Quadratics",
+                prompt: "The function \\(f\\) is defined by \\(f(x) = x^2 - 8x + 20\\). What is the minimum value of \\(f(x)\\)?",
+                options: ["20", "4", "8", "0"],
+                correct: 1,
+                explanation: "Complete square: \\(f(x) = (x - 4)^2 - 16 + 20 = (x - 4)^2 + 4\\). Minimum value is 4."
+            },
+            {
+                cat: "Advanced Functions",
+                prompt: "If \\(g(x) = 2x - 3\\) and \\(f(g(x)) = 4x^2 - 10x + 7\\), what is the value of \\(f(5)\\)?",
+                options: ["19", "31", "43", "55"],
+                correct: 2,
+                explanation: "Set \\(g(x) = 5 \\implies 2x - 3 = 5 \\implies 2x = 8 \\implies x = 4\\). Plug \\(x = 4\\) into \\(f(g(x))\\): \\(4(16) - 10(4) + 7 = 64 - 40 + 7 = 31\\)."
+            },
+            {
+                cat: "Exponential Functions",
+                prompt: "The function \\(h(x) = a \\cdot b^x + c\\) has asymptote \\(y = -5\\) and passes through \\((0, 3)\\) and \\((1, 11)\\). What is \\(a + b + c\\)?",
+                options: ["5", "8", "10", "12"],
+                correct: 0,
+                explanation: "Asymptote \\(c = -5\\). At \\((0,3)\\): \\(a(1) - 5 = 3 \\implies a = 8\\). At \\((1,11)\\): \\(8b - 5 = 11 \\implies 8b = 16 \\implies b = 2\\). Sum \\(= 8 + 2 + (-5) = 5\\)."
+            },
+            {
+                cat: "Advanced Functions",
+                prompt: "If \\(f(x) = \\sqrt{3x + 15}\\), what is the domain of \\(f\\)?",
+                options: ["x ≥ -5", "x ≥ 0", "x > -5", "All real numbers"],
+                correct: 0,
+                explanation: "Radicand must be non-negative: \\(3x + 15 \\ge 0 \\implies 3x \\ge -15 \\implies x \\ge -5\\)."
+            },
+            {
+                cat: "Quadratics",
+                prompt: "Which function is equivalent to \\(p(x) = 3(x - 2)^2 + 5\\)?",
+                options: ["p(x) = 3x^2 - 12x + 17", "p(x) = 3x^2 - 12x + 12", "p(x) = 3x^2 - 6x + 17", "p(x) = 3x^2 + 17"],
+                correct: 0,
+                explanation: "\\(3(x^2 - 4x + 4) + 5 = 3x^2 - 12x + 12 + 5 = 3x^2 - 12x + 17\\)."
+            },
+            {
+                cat: "Advanced Functions",
+                prompt: "If \\(f(x - 3) = 5x + 2\\), what is \\(f(x)\\)?",
+                options: ["5x + 17", "5x - 13", "5x + 7", "5x + 15"],
+                correct: 0,
+                explanation: "Let \\(u = x - 3 \\implies x = u + 3\\). Then \\(f(u) = 5(u + 3) + 2 = 5u + 15 + 2 = 5u + 17\\)."
+            },
+            {
+                cat: "Linear Functions",
+                prompt: "The table shows linear function \\(g(x)\\):<br><br><table class='w-full text-center border border-slate-700 my-2'><tr><td class='border p-1 bg-slate-900'>x</td><td class='border p-1'>2</td><td class='border p-1'>5</td><td class='border p-1'>8</td></tr><tr><td class='border p-1 bg-slate-900'>g(x)</td><td class='border p-1'>8</td><td class='border p-1'>17</td><td class='border p-1'>26</td></tr></table>What is \\(g(10)\\)?",
+                options: ["29", "32", "35", "38"],
+                correct: 1,
+                explanation: "Slope \\(m = (17 - 8)/(5 - 2) = 9/3 = 3\\). Equation \\(g(x) = 3x + 2\\). Thus \\(g(10) = 3(10) + 2 = 32\\)."
+            },
+            {
+                cat: "Rational Functions",
+                prompt: "For what values of \\(x\\) is \\(k(x) = \\frac{x + 5}{x^2 - 16}\\) undefined?",
+                options: ["x = 4 and x = -4", "x = -5 only", "x = 16 only", "x = 0"],
+                correct: 0,
+                explanation: "Set denominator to 0: \\(x^2 - 16 = 0 \\implies x = \\pm 4\\)."
+            },
+            {
+                cat: "Transformations",
+                prompt: "If \\(f(x) = 4^x\\), which function represents shifting \\(f(x)\\) by 3 units to the right?",
+                options: ["g(x) = 4^{x-3}", "g(x) = 4^{x+3}", "g(x) = 4^x - 3", "g(x) = 4^x + 3"],
+                correct: 0,
+                explanation: "Horizontal shift right by 3 replaces \\(x\\) with \\((x - 3)\\)."
+            },
+            {
+                cat: "Inverse Functions",
+                prompt: "If \\(f(x) = 3x - 9\\), what is the inverse function \\(f^{-1}(x)\\)?",
+                options: ["f^{-1}(x) = (x + 9)/3", "f^{-1}(x) = (x - 9)/3", "f^{-1}(x) = 3x + 9", "f^{-1}(x) = -3x + 9"],
+                correct: 0,
+                explanation: "Swap \\(x\\) and \\(y\\): \\(x = 3y - 9 \\implies 3y = x + 9 \\implies y = (x + 9)/3\\)."
+            },
+            {
+                cat: "Exponential Functions",
+                prompt: "The function \\(P(t) = 2500(1.06)^t\\) models population growth. What is the annual growth percentage?",
+                options: ["6%", "1.06%", "60%", "106%"],
+                correct: 0,
+                explanation: "\\(1 + r = 1.06 \\implies r = 0.06 = 6\\%\\)."
+            },
+            {
+                cat: "Advanced Functions",
+                prompt: "If \\(f(x) = x^5 - 3x\\), is \\(f(x)\\) even, odd, or neither?",
+                options: ["Even", "Odd", "Neither", "Both"],
+                correct: 1,
+                explanation: "\\(f(-x) = (-x)^5 - 3(-x) = -x^5 + 3x = -(x^5 - 3x) = -f(x)\\). Function is <strong>Odd</strong>."
+            },
+            {
+                cat: "Advanced Functions",
+                prompt: "If \\(g(x) = x^2 + 4\\) and \\(h(x) = 3x - 2\\), what is \\(g(h(3))\\)?",
+                options: ["53", "35", "25", "49"],
+                correct: 0,
+                explanation: "\\(h(3) = 3(3) - 2 = 7\\). Then \\(g(7) = 7^2 + 4 = 49 + 4 = 53\\)."
+            },
+            {
+                cat: "Quadratics",
+                prompt: "What is the range of \\(f(x) = -3(x + 2)^2 + 12\\)?",
+                options: ["y ≤ 12", "y ≥ 12", "y ≤ -2", "y ≥ -2"],
+                correct: 0,
+                explanation: "Since coefficient is negative (-3), parabola opens downward with vertex maximum at \\(y = 12\\). Range is \\(y \\le 12\\)."
+            },
+            {
+                cat: "Quadratics",
+                prompt: "What are the x-intercepts of \\(y = x^2 - 5x - 14\\)?",
+                options: ["(-2, 0) and (7, 0)", "(2, 0) and (-7, 0)", "(-5, 0) and (14, 0)", "(5, 0) and (-14, 0)"],
+                correct: 0,
+                explanation: "Factor: \\((x - 7)(x + 2) = 0 \\implies x = 7\\) and \\(x = -2\\)."
+            },
+            {
+                cat: "Quadratics",
+                prompt: "Find the vertex of \\(y = 2x^2 - 8x + 11\\).",
+                options: ["(2, 3)", "(-2, 3)", "(2, 11)", "(4, 3)"],
+                correct: 0,
+                explanation: "\\(x = -b/(2a) = 8/4 = 2\\). \\(y = 2(4) - 8(2) + 11 = 8 - 16 + 11 = 3\\). Vertex is \\((2, 3)\\)."
+            },
+            {
+                cat: "Quadratics",
+                prompt: "What is the sum of the roots of \\(3x^2 - 12x + 5 = 0\\)?",
+                options: ["4", "-4", "12", "5/3"],
+                correct: 0,
+                explanation: "Sum of roots \\(= -b/a = -(-12)/3 = 4\\)."
+            },
+            {
+                cat: "Quadratics",
+                prompt: "How many real solutions does \\(2x^2 - 4x + 5 = 0\\) have?",
+                options: ["0", "1", "2", "Infinitely many"],
+                correct: 0,
+                explanation: "Discriminant \\(b^2 - 4ac = (-4)^2 - 4(2)(5) = 16 - 40 = -24 < 0\\). Thus 0 real solutions."
+            }
+        ];
+
+        // State Variables
+        let currentQ = 0;
+        let userAnswers = Array(questions.length).fill(null);
+        let markedQuestions = Array(questions.length).fill(false);
+        let studentName = "";
+        let timerOption = "unlimited";
+        let timerSeconds = 0;
+        let timerInterval = null;
+        let timeElapsed = 0;
+
+        // Start Test Logic
+        function startQuiz() {
+            const nameInput = document.getElementById("student-name").value.trim();
+            if (!nameInput) {
+                document.getElementById("name-error").classList.remove("hidden");
+                return;
+            }
+            document.getElementById("name-error").classList.add("hidden");
+            studentName = nameInput;
+
+            const selectedTimer = document.querySelector('input[name="timer-option"]:checked').value;
+            timerOption = selectedTimer;
+
+            document.getElementById("start-screen").classList.add("hidden");
+            document.getElementById("quiz-screen").classList.remove("hidden");
+            document.getElementById("quiz-screen").classList.add("flex");
+
+            initTimer();
+            renderQuestion();
+            renderQuestionGrid();
+        }
+
+        // Timer Initialization
+        function initTimer() {
+            if (timerOption === "unlimited") {
+                document.getElementById("timer-display").textContent = "Open Time";
+                timerInterval = setInterval(() => {
+                    timeElapsed++;
+                }, 1000);
+            } else {
+                let totalMins = parseInt(timerOption);
+                timerSeconds = totalMins * 60;
+                updateTimerDisplay();
+
+                timerInterval = setInterval(() => {
+                    timeElapsed++;
+                    timerSeconds--;
+                    updateTimerDisplay();
+
+                    if (timerSeconds <= 0) {
+                        clearInterval(timerInterval);
+                        finishQuiz();
+                    }
+                }, 1000);
+            }
+        }
+
+        function updateTimerDisplay() {
+            let m = Math.floor(timerSeconds / 60);
+            let s = timerSeconds % 60;
+            document.getElementById("timer-display").textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        }
+
+        // Render Current Question
+        function renderQuestion() {
+            const q = questions[currentQ];
+            document.getElementById("current-q-num").textContent = currentQ + 1;
+            document.getElementById("question-category-tag").textContent = q.cat || "SAT Math";
+            document.getElementById("question-prompt").innerHTML = q.prompt;
+
+            // Render Choices
+            const container = document.getElementById("options-container");
+            container.innerHTML = "";
+
+            const hasAnswered = userAnswers[currentQ] !== null;
+
+            q.options.forEach((opt, idx) => {
+                const letter = String.fromCharCode(65 + idx);
+                let btnClass = "choice-card bg-slate-900 border border-slate-800 rounded-xl p-4 cursor-pointer flex items-center justify-between text-slate-200 text-sm font-semibold";
+
+                if (hasAnswered) {
+                    if (idx === q.correct) {
+                        btnClass += " correct";
+                    } else if (idx === userAnswers[currentQ]) {
+                        btnClass += " wrong";
+                    }
+                } else if (userAnswers[currentQ] === idx) {
+                    btnClass += " selected";
+                }
+
+                const div = document.createElement("div");
+                div.className = btnClass;
+                div.onclick = () => selectOption(idx);
+                div.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-blue-400">${letter}</span>
+                        <span>${opt}</span>
+                    </div>
+                    ${hasAnswered && idx === q.correct ? '<i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>' : ''}
+                    ${hasAnswered && idx === userAnswers[currentQ] && idx !== q.correct ? '<i class="fa-solid fa-circle-xmark text-rose-400 text-lg"></i>' : ''}
+                `;
+                container.appendChild(div);
+            });
+
+            // Handle Explanation Display
+            const expBox = document.getElementById("explanation-box");
+            if (hasAnswered) {
+                expBox.classList.remove("hidden");
+                document.getElementById("explanation-content").innerHTML = q.explanation;
+            } else {
+                expBox.classList.add("hidden");
+            }
+
+            // Flag Button Update
+            const flagBtn = document.getElementById("flag-btn");
+            if (markedQuestions[currentQ]) {
+                flagBtn.className = "flex items-center gap-2 text-xs font-bold bg-amber-500/20 border border-amber-500/50 px-3.5 py-2 rounded-lg text-amber-300 cursor-pointer";
+                flagBtn.innerHTML = '<i class="fa-solid fa-bookmark text-amber-400"></i> Marked for Review';
+            } else {
+                flagBtn.className = "flex items-center gap-2 text-xs font-semibold bg-slate-800 border border-slate-700 px-3.5 py-2 rounded-lg text-slate-300 hover:text-amber-400 transition-colors shadow-sm cursor-pointer";
+                flagBtn.innerHTML = '<i class="fa-regular fa-bookmark"></i> Mark for Review';
+            }
+
+            // Nav Buttons
+            document.getElementById("prev-btn").disabled = currentQ === 0;
+            const nextBtn = document.getElementById("next-btn");
+            if (currentQ === questions.length - 1) {
+                nextBtn.innerHTML = 'Finish Sheet <i class="fa-solid fa-check"></i>';
+                nextBtn.className = "px-7 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold transition-all flex items-center gap-2 cursor-pointer shadow-lg shadow-emerald-600/30";
+            } else {
+                nextBtn.innerHTML = 'Next <i class="fa-solid fa-chevron-right"></i>';
+                nextBtn.className = "px-7 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold transition-all flex items-center gap-2 cursor-pointer shadow-lg shadow-blue-600/30";
+            }
+
+            // Typeset MathJax formulas
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        // Option Selection
+        function selectOption(index) {
+            if (userAnswers[currentQ] !== null) return; // Prevent re-answering
+            userAnswers[currentQ] = index;
+            renderQuestion();
+            renderQuestionGrid();
+            updateAnsweredBadge();
+        }
+
+        function toggleFlagCurrentQuestion() {
+            markedQuestions[currentQ] = !markedQuestions[currentQ];
+            renderQuestion();
+            renderQuestionGrid();
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQ < questions.length - 1) {
+                currentQ++;
+                renderQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function updateAnsweredBadge() {
+            const count = userAnswers.filter(a => a !== null).length;
+            document.getElementById("answered-count-badge").textContent = count;
+        }
+
+        // Render Navigator Grid
+        function renderQuestionGrid() {
+            const grid = document.getElementById("grid-container");
+            grid.innerHTML = "";
+
+            questions.forEach((_, idx) => {
+                let btnClass = "h-9 rounded-lg border text-xs font-bold flex items-center justify-center relative cursor-pointer ";
+                if (idx === currentQ) {
+                    btnClass += "bg-blue-600 border-blue-400 text-white shadow-md ";
+                } else if (userAnswers[idx] !== null) {
+                    btnClass += "bg-slate-800 border-cyan-500/50 text-cyan-300 ";
+                } else {
+                    btnClass += "bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700 ";
+                }
+
+                const btn = document.createElement("button");
+                btn.className = btnClass;
+                btn.onclick = () => {
+                    currentQ = idx;
+                    renderQuestion();
+                    toggleModal('questionGridModal');
+                };
+                btn.innerHTML = `${idx + 1} ${markedQuestions[idx] ? '<span class="absolute top-0.5 right-0.5 w-2 h-2 bg-amber-400 rounded-full"></span>' : ''}`;
+                grid.appendChild(btn);
+            });
+        }
+
+        // Modal Toggles
+        function toggleModal(id) {
+            const m = document.getElementById(id);
+            if (m.classList.contains("hidden")) {
+                m.classList.remove("hidden");
+                m.classList.add("flex");
+            } else {
+                m.classList.add("hidden");
+                m.classList.remove("flex");
+            }
+        }
+
+        function toggleCalculator() {
+            toggleModal("calculatorModal");
+        }
+
+        function toggleFormulaSheet() {
+            toggleModal("formulaModal");
+        }
+
+        // Finish Test Logic
+        function finishQuiz() {
+            clearInterval(timerInterval);
+            document.getElementById("quiz-screen").classList.add("hidden");
+            document.getElementById("results-screen").classList.remove("hidden");
+            document.getElementById("results-screen").classList.add("flex");
+
+            let correctCount = 0;
+            userAnswers.forEach((ans, i) => {
+                if (ans === questions[i].correct) correctCount++;
+            });
+
+            let pct = Math.round((correctCount / questions.length) * 100);
+
+            document.getElementById("res-student-name").textContent = studentName;
+            document.getElementById("final-score-display").textContent = `${correctCount} / ${questions.length}`;
+            document.getElementById("final-percentage").textContent = `${pct}% Correct Score`;
+
+            let minsTaken = Math.floor(timeElapsed / 60);
+            let secsTaken = timeElapsed % 60;
+            document.getElementById("time-taken-display").textContent = `Time Elapsed: ${minsTaken} mins ${secsTaken} secs`;
+        }
+
+        // Sharing Functions
+        function sendViaWhatsApp() {
+            let correctCount = userAnswers.reduce((s, a, i) => s + (a === questions[i].correct ? 1 : 0), 0);
+            let msg = `Hello Eng. Keroulss Tharwat! My name is ${studentName}. I completed the Master SAT Practice Sheet.\n\nScore: ${correctCount}/${questions.length} (${Math.round(correctCount/questions.length*100)}%)\nTime Taken: ${Math.floor(timeElapsed/60)} mins.`;
+            window.open(`https://wa.me/201227829886?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function sendViaEmail() {
+            let correctCount = userAnswers.reduce((s, a, i) => s + (a === questions[i].correct ? 1 : 0), 0);
+            let subject = `SAT Practice Sheet Score - ${studentName}`;
+            let body = `Hello Eng. Keroulss Tharwat,\n\nStudent: ${studentName}\nScore: ${correctCount}/${questions.length} (${Math.round(correctCount/questions.length*100)}%)\nTime Taken: ${Math.floor(timeElapsed/60)} mins.`;
+            window.location.href = `mailto:keroulss.tharwat@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        // Calculator Logic
+        let calcScreen = document.getElementById("calc-screen");
+        let calcExpr = "";
+
+        function calcInput(val) {
+            if (calcScreen.value === "0" && val !== ".") {
+                calcExpr = val;
+            } else {
+                calcExpr += val;
+            }
+            calcScreen.value = calcExpr;
+        }
+
+        function calcClear() {
+            calcExpr = "";
+            calcScreen.value = "0";
+            document.getElementById("calc-history").textContent = "";
+        }
+
+        function calcBackspace() {
+            calcExpr = calcExpr.slice(0, -1);
+            calcScreen.value = calcExpr || "0";
+        }
+
+        function calcFunc(fn) {
+            if (fn === 'sqrt') calcExpr += 'Math.sqrt(';
+            else if (fn === 'sin') calcExpr += 'Math.sin(';
+            else if (fn === 'cos') calcExpr += 'Math.cos(';
+            else if (fn === 'tan') calcExpr += 'Math.tan(';
+            calcScreen.value = calcExpr;
+        }
+
+        function calcEval() {
+            try {
+                let sanitized = calcExpr.replace(/\^/g, '**');
+                let res = eval(sanitized);
+                document.getElementById("calc-history").textContent = calcExpr + " =";
+                calcScreen.value = res;
+                calcExpr = String(res);
+            } catch (e) {
+                calcScreen.value = "Error";
+                calcExpr = "";
+            }
+        }
+    </script>
+</body>
+</html>
